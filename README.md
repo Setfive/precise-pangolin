@@ -1,1 +1,3 @@
 # bank-kata
+
+Nothing to see here...

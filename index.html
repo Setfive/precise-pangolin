@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <title>Acme Financial: Process Account File</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+        
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="main.js"></script>
+    
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Oswald' rel='stylesheet' type='text/css'>
+    
+    <link href="style.css" rel='stylesheet' type='text/css'>
+  </head>
+  <body>       
+  
+  <div class="header-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1>Acme Financial: Account Processing</h1>    
+            </div>
+       </div>
+   </div>
+ </div>
+ 
+ <div class="container body-container">
+    <div class="row">  
+        
+        <div class="col-md-8 col-md-offset-2">
+          <div class="well">
+              <h3>Upload a file</h3>
+              
+              <form data-provide="upload-file" class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="fileUpload">Select a file:</label>
+                    <div class="col-sm-10"><input type="file" id="fileUpload" class="form-control" /></div>            
+                </div>
+                
+                <div class="form-group hidden" data-provide="error">
+                   <div data-provide="msg" class="col-sm-12">
+                       <div class="alert alert-danger">This is an error</div>
+                   </div>
+                </div>
+                
+                <div class="form-group">
+                   <div class="col-sm-12"><button type="submit" class="btn btn-lg btn-primary">Process</button></div>
+                </div>              
+              </form>
+              
+              <hr />
+              
+              <h3>Processed numbers</h3>
+              <textarea placeholder="Processed account numbers appear here..." 
+                        class="processed-list form-control" data-provide="processed-list"></textarea>
+                        
+              <hr />
+              
+              <h3>File statistics</h3>
+              <ul class="list-unstyled list-inline text-center">
+                <li class="valid"># Valid: 0</li>
+                <li class="in-valid"># In-valid: 0</li>
+              </ul>
+              
+          </div>
+        </div>
+        
+    </div>
+ </div>
+ 
+ <script>
+ 
+var BankApi = {
+  processFile: function(fileBody){
+      console.log("received " + fileBody);
+  }
+};
+ 
+$(document).ready(function(){
+  
+    $("#fileUpload").change(function(event){
+       $(this).data("selectedFile", this.files[0]);       
+    });
+    
+    $("[data-provide='upload-file']").submit(function(){
+        
+        var file = $("#fileUpload").data("selectedFile");
+        var reader = new FileReader();
+        
+        reader.onload = function(f){
+            BankApi.processFile(f.target.result);
+        };
+        
+        reader.readAsText(file);        
+        
+        return false;
+    }); 
+  
+});
+
+</script>
+ 
+  </body>
+</html>

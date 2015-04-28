@@ -1,0 +1,50 @@
+body {
+ font-family: 'Droid Sans', sans-serif;
+}
+
+h1, h2, h3, h4 {
+ font-family: 'Oswald', sans-serif;
+ text-transform: uppercase;
+}
+
+.header-container {
+ padding-top: 40px; 
+ background-color: #374140;
+ color: #D9CB9E;
+ border-bottom: 2px solid #2A2C2B;
+}
+
+.header-container h1 {
+ margin: 0 0 10px;
+}
+
+.body-container {
+ margin-top: 40px;
+}
+
+.well { 
+ color: #374140;
+}
+
+.well h3 {
+ margin-top: 0;
+}
+
+.btn {
+ border-radius: 0;
+}
+
+.valid, .in-valid {
+ font-size: 32px;
+ font-family: 'Oswald', sans-serif;
+}
+
+li.valid {
+ color: #3c763d;
+ padding-right: 25px;
+}
+
+.in-valid {
+ color: #a94442;
+
+ }
