@@ -41,3 +41,6 @@ And errors look like:
 ashish@ashish:~$ curl -X POST -d "547849503293" http://twitlabs.net/bank-kata/validate.php
 {"error":"Requesting to fast"}
 ```
+
+After validating, write the results into the table under "Processed Numbers".
+
