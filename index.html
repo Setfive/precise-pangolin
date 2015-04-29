@@ -63,8 +63,17 @@
               <hr />
               
               <h3>Processed numbers</h3>
-              <textarea placeholder="Processed account numbers appear here..." 
-                        class="processed-list form-control" data-provide="processed-list"></textarea>
+              <div class="alert alert-info text-center">Processed account numbers appear in this table.</div>
+              <table class="table table-striped table-bordered" data-provide="processed-list">
+                <thead>
+                    <tr>
+                        <th>Account #</th>
+                        <th>Is Valid?</th>
+                    </tr>                    
+                </thead>
+                <tbody>
+                </tbody>
+              </table>              
                         
               <hr />
               
