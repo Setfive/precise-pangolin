@@ -42,5 +42,11 @@ ashish@ashish:~$ curl -X POST -d "547849503293" http://twitlabs.net/bank-kata/va
 {"error":"Requesting to fast"}
 ```
 
+To complete this task you need to:
+* Validate each processed account number
+* Implement a progress bar giving the user visual feedback as numbers are validated. See http://getbootstrap.com/components/#progress 
+
 After validating, write the results into the table under "Processed Numbers".
+
+## Task 3 ##
 
