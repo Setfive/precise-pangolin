@@ -4,9 +4,10 @@ Acme Financial has purchased a fabulously useless automation tool that translate
 Unfortunately, the current version of the OCR software produces a file with entries that look like:
 
 ```
-    _ _    _  _  _ _  _
-  | _| _||_||_ |_   ||_||_|
-  ||_  _|  | _||_|  ||_| _| 
+ _        _  _  _  _           _  _ 
+ _||_||_||_| _|| ||_ |_|  |  ||_ |_ 
+ _|  |  ||_| _||_| _|  |  |  | _||_|
+ 
 ```
 
 ## Task 1 ##
