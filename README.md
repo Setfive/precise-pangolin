@@ -1,3 +1,3 @@
-# bank-kata
+# Precise Pangolin
 
 Nothing to see here...
