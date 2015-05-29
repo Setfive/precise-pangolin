@@ -4,10 +4,10 @@ Turtle's are notorious drinkers, from pirate rum to pretty much anything else th
 
 Using the marvels of modern technology the Tiny Turtle Task force (TTT) has managed to encode turtle movements in a similar syntax as the familiar "Logo" programming language. The "language" is remarkably simple and has the following constructs:
 
-RIGHT [integer] - Turtle moves right
-LEFT [integer] - Turtle moves left
-UP [integer] - Turtle moves up
-DOWN [integer] - Turtle moves down
+* RIGHT [integer] - Turtle moves right
+* LEFT [integer] - Turtle moves left
+* UP [integer] - Turtle moves up
+* DOWN [integer] - Turtle moves down
 
 The TTT has asked you to develop a program that given an input file of moves can output the following:
 * What's the longest single line the turtle travels?
