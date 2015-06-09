@@ -5,3 +5,8 @@ Write a function to generate a random password with length greater than $min and
 * Update generatePassword so that the following rules are followed;
   * At least 1 uppercase letter
   * No characters are duplicated
+
+
+
+
+
