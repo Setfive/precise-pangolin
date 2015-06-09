@@ -6,5 +6,3 @@ Write a function to generate a random password with length greater than $min and
   * At least 1 uppercase letter
   * No characters are duplicated
 
-
-
