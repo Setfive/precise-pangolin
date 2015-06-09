@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <title>Turtles be drunk</title>
+
+    <!-- Bootstrap -->
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+        
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.9.3/lodash.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="main.js"></script>
+    
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Oswald' rel='stylesheet' type='text/css'>
+    
+    <link href="styles.css" rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+  
+  <div class="wrapper">
+     
+	  <div class="header-container">
+	    <div class="container">
+	        <div class="row">
+	            <div class="col-md-12 text-center">
+	                <h1>Turtles be drunk</h1>    
+	            </div>
+	       </div>
+	   </div>
+	 </div>
+	 
+	 <div class="container-wrapper">
+		 <div class="container body-container">
+		    <div class="row">          
+		        <div class="col-md-4">
+		            <form class="turtle-form" data-provide="turtleForm">
+		            <fieldset>
+		                <legend>Input File</legend>
+		                
+			            <ul class="list-inline list-unstyled">
+			              <li class="dropdown">
+			                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">Generate Input <span class="caret"></span></button>	                
+			                 <ul class="dropdown-menu">
+			                    <li role="presentation"><a data-provide="generate" role="menuitem" tabindex="-1" href="#random">Random</a></li>
+			                  </ul>
+			              </li>
+			              <li><button data-provide="process" class="btn btn-primary">Process!</button></li>
+			            </ul>                
+		                
+		                <textarea name="turtleMovement" class="turtle-input form-control"></textarea>
+		            </fieldset>        
+		            </form>
+		        </div>
+		        <div class="col-md-8">
+		            <canvas id="turtleGrid"></canvas>
+		        </div>
+		    </div>
+		</div>
+    </div>
+    
+ </div>
+ 
+  </body>
+  </html>
