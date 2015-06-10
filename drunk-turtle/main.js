@@ -9,7 +9,7 @@ var TurtleUtil = {
         var res = [];
         var str = "";
         
-        for(var i = 0; i < TurtleUtil.randInt(25, 100); i++){
+        for(var i = 0; i < TurtleUtil.randInt(400, 500); i++){
             str = directions[ TurtleUtil.randInt(0, directions.length - 1) ] + " " + TurtleUtil.randInt(5, 25);
             res.push( str );
         }
@@ -18,10 +18,20 @@ var TurtleUtil = {
     },
     
     processTurtle: function(input){   
-        var parsedMovements = _(input).split("\n").map(TurtleUtil.processLine).value();        
-        var maxDims = _.reduce(parsedMovements, TurtleUtil.reduceMovement, {l: 0, r: 0, u: 0, d: 0});        
+        var parsedMovements = _(input).split("\n").map(TurtleUtil.processLine).value();
         
-        var gridSize = {w: _.max([maxDims.r, maxDims.l]) * 2, h: _.max([maxDims.u, maxDims.d]) * 2};
+        var pointList = _.reduce(parsedMovements, function(list, el, index){
+            var lastPoint = list[index];
+            var newPoint = el.move(lastPoint);           
+            list.push(newPoint);
+            return list;
+         }, [{x: 0, y: 0}]);
+        
+        var maxX = _.max(pointList, function(e){return Math.abs(e.x);});
+        var maxY = _.max(pointList, function(e){return Math.abs(e.y);});                              
+        var maxSize = _.max([maxX.x, maxY.y]) * 2;
+        
+        var gridSize = {w: maxSize, h: maxSize};
         var turtleGrid = TurtleUtil.initializeArray(gridSize.w, gridSize.h);
         
         TurtleUtil.drawTurtle(gridSize, parsedMovements);
@@ -33,7 +43,8 @@ var TurtleUtil = {
         
         canvas.width = $("#turtleGrid").parent("div:first").width();
         canvas.height = $("#turtleGrid").parent("div:first").height() - 20;
-        
+                
+        ctx.beginPath();
         ctx.rect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "#cccccc";
         ctx.fill(); 
@@ -44,22 +55,44 @@ var TurtleUtil = {
         
         var isFlipped = false;
         
-        if( canvasW / canvasH > 1 && gridSize.w / gridSize.h > 1 ){
-            canvasH = Math.floor( (gridH * canvasW) / gridW );            
-        }else if( canvasW / canvasH > 1 && gridSize.w / gridSize.h < 1 ){           
-            canvasW = Math.floor( (gridW * canvasH) / gridH );            
+        if( canvasW / canvasH >= gridSize.w / gridSize.h ){
+            canvasW = Math.floor( (gridW * canvasH) / gridH );
+        }else if( canvasW / canvasH < gridSize.w / gridSize.h ){                       
+            canvasH = Math.floor( (gridH * canvasW) / gridW );
         }               
+        
+        canvasW = canvas.width - 10;
+        canvasH = canvas.height - 10;
         
         ctx.beginPath();
         ctx.moveTo(0, 0);
         ctx.rect(5, 5, canvasW, canvasH);
         ctx.strokeStyle = "#000";
         ctx.lineWidth = 1;
-        ctx.stroke();        
+        ctx.stroke();    
+        ctx.closePath();        
         
-        console.log( gridSize );
-        console.log( canvas.width + ", " + canvas.height );
-        console.log( canvasW + ", " + canvasH );
+        // Use an off-screen canvas at 1-1 size and then copy it in
+        
+        var lineToList = _.reduce(parsedMovements, function(list, el, index){
+           var lastPoint = list[index];
+           var newPoint = el.move(lastPoint);           
+           list.push(newPoint);
+           return list;
+        }, [ {x: Math.floor(gridSize.w / 2), y: Math.floor(gridSize.h / 2), } ]);
+        
+        ctx.scale(canvasW / gridSize.w, canvasH / gridSize.h);
+                
+        ctx.beginPath();
+        ctx.strokeStyle = "#FF0000";
+        ctx.moveTo(gridSize.w / 2, gridSize.h / 2);
+        ctx.lineWidth = 1;                          
+
+        _.forEach(lineToList, function(el){ ctx.lineTo(el.x, el.y); });
+        
+        ctx.stroke();    
+        ctx.closePath();        
+        
     },
     
     initializeArray: function(w, h){
@@ -67,9 +100,16 @@ var TurtleUtil = {
     },
     
     reduceMovement: function(result, mv) {        
-        var k = {"LEFT": "l", "RIGHT": "r", "UP": "u", "DOWN": "d"};
+        var k = {"LEFT": "l", "RIGHT": "l", "UP": "u", "DOWN": "u"};
+        var len = (mv._direction == "DOWN" || mv._direction == "LEFT") ? mv._length * -1 : mv._length;
+
         
-        result[ k[mv._direction] ] += mv._length;        
+        result[k[mv._direction]] = Math.abs(result[k[mv._direction]] + len) > Math.abs(result[k[mv._direction]]) 
+                                    ? result[k[mv._direction]] + len : result[k[mv._direction]] + len;
+        
+        
+        // result[k[mv._direction]] += len;
+        
         return result;
     },
     
@@ -93,8 +133,19 @@ var TurtleUtil = {
     },    
 };
 
-TurtleUtil.Move.prototype.move = function(){ 
-        
+TurtleUtil.Move.prototype.move = function(px){
+    
+    var point = _.extend({}, px);
+    
+    switch( this._direction ){
+        case "LEFT": point.x -= this._length; break;
+        case "RIGHT": point.x += this._length; break;
+        case "UP": point.y += this._length; break;
+        case "DOWN": point.y -= this._length; break;        
+        default: break;
+    }
+    
+    return point;
 };
 
 $(document).ready(function(){
