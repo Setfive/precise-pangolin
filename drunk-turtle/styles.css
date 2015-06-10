@@ -39,12 +39,17 @@ h1, h2, h3, h4 {
  width: 100%;
 }
 
-.body-container .row .col-md-4, .body-container .row .col-md-8 {
+.body-container .row .input-container, .body-container .row .path-container {
    float: none;
    display: table-cell;
    vertical-align: top;
    padding-top: 20px;
  }
+
+.body-container .row .path-container {
+   text-align: center;
+   padding-bottom: 10px;
+}
 
 .well { 
  color: #374140;

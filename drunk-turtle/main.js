@@ -21,23 +21,73 @@ var TurtleUtil = {
         var parsedMovements = _(input).split("\n").map(TurtleUtil.processLine).value();
         
         var pointList = _.reduce(parsedMovements, function(list, el, index){
-            var lastPoint = list[index];
-            var newPoint = el.move(lastPoint);           
+            var newPoint = el.move(list[index]);            
             list.push(newPoint);
             return list;
          }, [{x: 0, y: 0}]);
         
         var maxX = _.max(pointList, function(e){return Math.abs(e.x);});
         var maxY = _.max(pointList, function(e){return Math.abs(e.y);});                              
-        var maxSize = _.max([maxX.x, maxY.y]) * 2;
-        
+        var maxSize = _.max([ Math.abs(maxX.x), Math.abs(maxY.y)]) * 2;
+                
         var gridSize = {w: maxSize, h: maxSize};
         var turtleGrid = TurtleUtil.initializeArray(gridSize.w, gridSize.h);
+        
+        console.log(maxX);
+        console.log( gridSize );
         
         TurtleUtil.drawTurtle(gridSize, parsedMovements);
     },
     
     drawTurtle: function(gridSize, parsedMovements){
+                        
+        var canvas = document.createElement("canvas"); 
+        // var canvas = document.getElementById('turtleGrid');        
+        var ctx = canvas.getContext('2d');
+        
+        canvas.width = gridSize.w;
+        canvas.height = gridSize.h;
+        
+        var lineToList = _.reduce(parsedMovements, function(list, el, index){
+            var newPoint = el.move( list[index] );            
+            list.push(newPoint);            
+            return list;
+         }, [ {x: Math.floor(gridSize.w / 2), y: Math.floor(gridSize.h / 2), } ]);
+                        
+        ctx.beginPath();
+        ctx.rect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#cccccc";
+        ctx.fill(); 
+        ctx.closePath();        
+        
+        ctx.beginPath();
+        ctx.rect(lineToList[0].x, lineToList[0].y, 5, 5);
+        ctx.fillStyle = "#00FF00";
+        ctx.fill(); 
+        ctx.closePath();        
+        
+        ctx.beginPath();
+        ctx.strokeStyle = "#FF0000";
+        ctx.moveTo(gridSize.w / 2, gridSize.h / 2);
+        ctx.lineWidth = 1;                          
+
+        _.forEach(lineToList, function(el){ ctx.lineTo(el.x, el.y); });
+        
+        ctx.stroke();    
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.rect(lineToList[lineToList.length - 1].x, lineToList[lineToList.length - 1].y, 5, 5);
+        ctx.fillStyle = "#00FF00";
+        ctx.fill(); 
+        ctx.closePath();        
+        
+        var dataURL = canvas.toDataURL();        
+        
+        $("#turtleGrid").attr("src", "data:" + dataURL);
+        $("#turtleGrid").removeClass("hidden");
+        
+        /*
         var canvas = document.getElementById('turtleGrid');
         var ctx = canvas.getContext("2d");
         
@@ -92,6 +142,7 @@ var TurtleUtil = {
         
         ctx.stroke();    
         ctx.closePath();        
+        */
         
     },
     
