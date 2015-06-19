@@ -1,6 +1,5 @@
 # Random Passwords
-Write a function to generate a random password with length greater than $min and less than $max using ASCII characters. ex: generatePassword($min, $max)
-
+Write a function to generate a random password with length greater $len using ASCII characters. ex: generatePassword($len)
 
 * Update generatePassword so that the following rules are followed;
   * At least 1 uppercase letter
