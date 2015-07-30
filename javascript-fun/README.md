@@ -29,10 +29,22 @@ So for example, given [A, H, D, Y, U] a valid "bad shuffle" would be [A, Y, D, H
 
 ## Part 2
 
+Update "getBadlyShuffledList(list)" to accept a second "filterBy" parameter which is a callback that "getBadlyShuffledList" 
+uses to decide if an element can be moved. The callback expects the index and then the element as parameters.
+
+So for example, the version of the function could be re-created by calling:
+
+getBadlyShuffledList(lst, function(index, element){
+  return index % 2== 0;
+});
+
+## Part 3
+
 Add "getBadlyShuffledList(list)" to native Javascript arrays so that you could do the following:
 
 var lst = [A, H, D, Y, U];
+
 console.log( lst.getBadlyShuffledList() );
 
-## Part 3
+
 
