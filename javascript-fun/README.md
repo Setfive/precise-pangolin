@@ -8,13 +8,21 @@ Write a function named "getRandomPassword(len)" which generates a random passwor
 * Contains at least one uppercase letter
 * Contains no duplicates
 
+Using it for example:
+```
+var pass = getRandomPassword(4);
+
+console.log(pass);
+
+# "Agu3"
+```
+
 ## Part 2
 Update "getRandomPassword(len)" so that every two letters in the generated password are adjacent on a QWERTY keyboard. For example, "qwiomn" would be valid but "tnpl" would not be.
 
 
 ## Part 3
 Implement the same "getRandomPassword(len)" function from Part 1, *EXCEPT* this time don't use any loops - while, for, for..in
-
 
 # getBadlyShuffledList
 
@@ -34,17 +42,20 @@ uses to decide if an element can be moved. The callback expects the index and th
 
 So for example, the version of the function could be re-created by calling:
 
+```
 getBadlyShuffledList(lst, function(index, element){
   return index % 2== 0;
 });
+```
 
 ## Part 3
 
 Add "getBadlyShuffledList(list)" to native Javascript arrays so that you could do the following:
 
+```
 var lst = [A, H, D, Y, U];
 
 console.log( lst.getBadlyShuffledList() );
-
+```
 
 
