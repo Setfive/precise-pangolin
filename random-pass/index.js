@@ -78,10 +78,10 @@ const pass3Timeout = setTimeout( () => {
 const pass3Done = (pass3) => {
     clearTimeout(pass3Timeout);
     const alphaRe = new RegExp("^[A-Za-z0-9]+$");
-    if(alphaRe.test(pass3) == false) {
-        console.log("remoteRandomPassword: FAILED!");
-    }else{
+    if(pass3 && pass3.length == len && alphaRe.test(pass3)) {
         console.log("remoteRandomPassword: OK!");
+    }else{
+        console.log("remoteRandomPassword: FAILED!");
     }
 };
 
