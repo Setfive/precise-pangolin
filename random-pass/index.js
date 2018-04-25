@@ -33,14 +33,23 @@ function validatePassword(len, password) {
     return true;
 }
 
-const len = 1 + Math.floor(Math.random() * 5);
+function randInt(min, max){
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const len = randInt(1, 7);
 console.log("Testing with len = " + 5);
 
 const pass1 = randomPassword(len);
 if(!pass1 || pass1.length != len){
     console.log("randomPassword: FAILED!");
 }else{
-    console.log("randomPassword: OK!");
+    const alphaRe = new RegExp("^[A-Za-z0-9]+$");
+    if(alphaRe.test(pass1)) {
+        console.log("randomPassword: OK!");
+    }else{
+        console.log("randomPassword: FAILED!");
+    }
 }
 
 const pass2 = betterRandomPassword(len);
