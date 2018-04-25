@@ -47,11 +47,11 @@ function betterRandomPassword(len) {
 ## Remote randomness
 Write a function which uses callbacks and the remoteRandom function  to retrieve a random string from a remote source.
 The "randomness" source will return a long (10,000) character string and the goal is to find a qualifying substring.
-The substring must pass the same rules as above:
+
+To qualify, the substring needs to meet the following conditions:
 * Contains only alphanumeric characters
-* Contains at least one uppercase letter
-* Contains no duplicate characters
-* The "validatePassword" function returns true when called with the password
+* Be "len" characters long
+
 
 One the substring is found, invoke the "done" callback. If no such substring just invoke "done" with "null".
 
