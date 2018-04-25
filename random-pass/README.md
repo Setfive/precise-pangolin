@@ -28,14 +28,32 @@ obeys some additional requirements:
 * Contains no duplicate characters
 * The "validatePassword" function returns true when called with the password
 
+```javascript
+/**
+ * Returns a random password of length "len".
+ * Password requirements:
+ * - Contains "len" characters
+ * - Contains only alphanumeric characters
+ * - Contains no duplicate characters
+ * - The "validatePassword" function returns true when called with the generated password
+ * @param len number
+ */
+function betterRandomPassword(len) {
+
+    return null;
+}
+```
+
 ## Remote randomness
-Write a function which uses callbacks and the remoteRandom function 
-to retrieve a random string from a remote source.
-Using that random string, generate a random password following the same rules as above:
+Write a function which uses callbacks and the remoteRandom function  to retrieve a random string from a remote source.
+The "randomness" source will return a long (10,000) character string and the goal is to find a qualifying substring.
+The substring must pass the same rules as above:
 * Contains only alphanumeric characters
 * Contains at least one uppercase letter
 * Contains no duplicate characters
 * The "validatePassword" function returns true when called with the password
+
+One the substring is found, invoke the "done" callback. If no such substring just invoke "done" with "null".
 
 ```javascript
 /**
@@ -50,19 +68,21 @@ function remoteRandomPassword(len, done){
 ```
 
 ## Remote validation
-Write a function similar to above but in addition call the "remoteValidate" 
-function to check that the generated password is valid. 
-Note: "remoteValidate" is asyncronous (uses a callback) but your function should always complete with a valid password.
+Write a function similar to "betterRandomPassword" but call the "remoteValidate" function to check that the generated password is valid. 
+
+**Note:** "remoteValidate" is asyncronous (uses a callback) but your function should always invoke the "done" callback with a valid password.
+
+**Note:** "remoteValidate" does NOT follow identical rules as the local "validatePassword", it may fail unexpectedly.
+
+**Protip:** You'll probably want some recursion.
 
 ```javascript
 /**
-* Call "remoteRandom" with a callback to get a random string.
-* Validate it by calling "remoteValidate" with the generated password and a callback.
-* And then call 'done' with the generated password as an argument.
+* Implement a similar function to betterRandomPassword except use remoteValidate to validate the password.
 * @param len number
 * @param done function
 */
-function remoteRandomPassword(len, done){
+function remoteValidatedPasswordd(len, done){
     
 }
 ```
