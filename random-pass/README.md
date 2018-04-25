@@ -68,11 +68,11 @@ function remoteRandomPassword(len, done){
 ```
 
 ## Remote validation
-Write a function similar to "betterRandomPassword" but call the "remoteValidate" function to check that the generated password is valid. 
+Use the "betterRandomPassword" function from above but call the "remoteValidate" function to check that the generated password is valid. 
 
 **Note:** "remoteValidate" is asyncronous (uses a callback) but your function should always invoke the "done" callback with a valid password.
 
-**Note:** "remoteValidate" does NOT follow identical rules as the local "validatePassword", it may fail unexpectedly.
+**Note:** "remoteValidate" does NOT follow the same rules as the local "validatePassword". You have to call it multiple times with the same password to get a succesful response.
 
 **Protip:** You'll probably want some recursion.
 
@@ -82,7 +82,7 @@ Write a function similar to "betterRandomPassword" but call the "remoteValidate"
 * @param len number
 * @param done function
 */
-function remoteValidatedPasswordd(len, done){
+function `remoteValidatedPassword`(len, done){
     
 }
 ```
