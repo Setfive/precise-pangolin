@@ -21,13 +21,25 @@ function validatePassword(len, password) {
         return false;
     }
 
-    if (password.match(alphaNumericRegex) === null) { return false; }
-    if (password.match(upperRegex) === null) { return false; }
+    if (password.match(alphaNumericRegex) === null) {
+        return false;
+    }
 
-    const charMap = new Map();
-    for (const i = 0; i < password.length; i++) {
-        if (charMap.get(password.charAt(i)) !== undefined) { return false; }
-        charMap.set(password.charAt(i), true)
+    if (password.match(upperRegex) === null) {
+        return false;
+    }
+
+    let usedChars = "";
+    for (let i = 0; i < password.length; i++) {
+        if(usedChars.indexOf(password[i]) > -1){
+            return false;
+        }
+
+        usedChars += password[i];
+    }
+
+    if(password.charCodeAt(0) < password.charCodeAt(password.length - 1)){
+        return false;
     }
 
     return true;
