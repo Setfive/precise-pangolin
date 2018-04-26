@@ -82,7 +82,7 @@ Use the "betterRandomPassword" function from above but call the "remoteValidate"
 * @param len number
 * @param done function
 */
-function `remoteValidatedPassword`(len, done){
+function remoteValidatedPassword(len, done){
     
 }
 ```
