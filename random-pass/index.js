@@ -109,6 +109,19 @@ Api.remoteRandom((randomString) => {
 /** END DO NOT MODIFY **/
 
 
+function getAlphaChars(){
+    const asciiRanges = [ [48, 57], [65, 90], [97, 122] ];
+    const alphaRange = [];
+
+    for(let i = 0; i < asciiRanges.length; i++) {
+        for (let j = asciiRanges[i][0]; j <= asciiRanges[i][1]; j++) {
+            alphaRange.push(String.fromCharCode(j));
+        }
+    }
+
+    return alphaRange;
+}
+
 /**
  * Returns a random password of length "len".
  * Password requirements:
@@ -117,9 +130,15 @@ Api.remoteRandom((randomString) => {
  * @param len number
  */
 function randomPassword(len) {
+    const alphaRange = getAlphaChars();
+    let finalPass = "";
+    for(let i = 0; i < len; i++){
+        finalPass += alphaRange[ randInt(0, alphaRange.length - 1) ];
+    }
 
-    return null;
+    return finalPass;
 }
+
 
 /**
  * Returns a random password of length "len".
