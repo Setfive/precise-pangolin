@@ -53,7 +53,7 @@ To qualify, the substring needs to meet the following conditions:
 * Be "len" characters long
 
 
-One the substring is found, invoke the "done" callback. If no such substring just invoke "done" with "null".
+Once the substring is found, invoke the "done" callback. If no such substring just invoke "done" with "null".
 
 ```javascript
 /**
