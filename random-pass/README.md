@@ -4,8 +4,8 @@
 
 * DON'T cheat
 * You can add as many helper functions as you want
-* You can use the randInt(min, max) function included in search file to generate a random integer
-* sampleJavascript.js has some sample JavaScript code which might be helpful
+* You can use the randInt(min, max) function included in each file to generate a random integer
+* https://github.com/Setfive/precise-pangolin/blob/master/random-pass/sampleJavascript.js has some sample JavaScript code which might be helpful
 
 ## Simple random password
  
@@ -26,6 +26,8 @@ function randomPassword(len){
     
 }
 ```
+
+Start with https://github.com/Setfive/precise-pangolin/blob/master/random-pass/1_randomPassword.js
 
 ## Better random password
 Write a function simlar to randomPassword where the generated password 
@@ -51,6 +53,8 @@ function betterRandomPassword(len) {
 }
 ```
 
+Start with https://github.com/Setfive/precise-pangolin/blob/master/random-pass/2_betterRandomPassword.js
+
 ## Substring password
 Write a function which calls "getRandomString" to retrieve a random character string 
 and then find a substring which meets the following conditions:
@@ -75,8 +79,11 @@ function substringPassword(len){
 }
 ```
 
+Start with https://github.com/Setfive/precise-pangolin/blob/master/random-pass/3_substringPassword.js
+
 ## Search for file
 Write a function "searchForFile" which given "filename" and "files" scans files to find if filename exists within it.
+Return "true" if filename is contained in the array.
 files will be an array of arrays of strings of arbitrary depth, similar to a directory structure.
 
 files will be something like:
@@ -108,3 +115,4 @@ function searchForFile(files, filename){
     
 }
 ```
+Start with https://github.com/Setfive/precise-pangolin/blob/master/random-pass/4_searchForFile.js
