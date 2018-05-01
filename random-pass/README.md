@@ -1,5 +1,12 @@
 # Random Passwords
 
+## Tips and such
+
+* DON'T cheat
+* You can add as many helper functions as you want
+* You can use the randInt(min, max) function included in search file to generate a random integer
+* sampleJavascript.js has some sample JavaScript code which might be helpful
+
 ## Simple random password
  
 Write a function that given a required number of characters (len) 
@@ -23,10 +30,10 @@ function randomPassword(len){
 ## Better random password
 Write a function simlar to randomPassword where the generated password 
 obeys some additional requirements:
+* Is "len" characters long
 * Contains only alphanumeric characters
 * Contains at least one uppercase letter
 * Contains no duplicate characters
-* The "validatePassword" function returns true when called with the password
 
 ```javascript
 /**
@@ -44,45 +51,60 @@ function betterRandomPassword(len) {
 }
 ```
 
-## Remote randomness
-Write a function which uses callbacks and the remoteRandom function  to retrieve a random string from a remote source.
-The "randomness" source will return a long (10,000) character string and the goal is to find a qualifying substring.
-
-To qualify, the substring needs to meet the following conditions:
+## Substring password
+Write a function which calls "getRandomString" to retrieve a random character string 
+and then find a substring which meets the following conditions:
+* Is "len" characters long
 * Contains only alphanumeric characters
-* Be "len" characters long
+* Contains at least one uppercase letter
+* Contains no duplicate characters
 
-
-Once the substring is found, invoke the "done" callback. If no such substring just invoke "done" with "null".
+If no such substring exists return "null".
 
 ```javascript
 /**
-* Call "remoteRandom" with a callback to get a random string.
-* And then call 'done' with the generated password as an argument.
+* Uses getRandomString() to get a random string and returns a substring from that value which:
+* Is "len" characters long
+* Contains only alphanumeric characters
+* Contains at least one uppercase letter
+* Contains no duplicate characters
 * @param len number
-* @param done function
 */
-function remoteRandomPassword(len, done){
+function substringPassword(len){
     
 }
 ```
 
-## Remote validation
-Use the "betterRandomPassword" function from above but call the "remoteValidate" function to check that the generated password is valid. 
+## Search for file
+Write a function "searchForFile" which given "filename" and "files" scans files to find if filename exists within it.
+files will be an array of arrays of strings of arbitrary depth, similar to a directory structure.
 
-**Note:** "remoteValidate" is asyncronous (uses a callback) but your function should always invoke the "done" callback with a valid password.
-
-**Note:** "remoteValidate" does NOT follow the same rules as the local "validatePassword". You have to call it multiple times with the same password to get a succesful response.
+files will be something like:
+```bash
+[
+    "Photos",
+    [
+        "Downloads",
+        "Desktop",
+        ...
+   ],
+   "Home",
+   "cats.gif",
+   [
+        "puppies.png",
+        "1.png"
+   ]
+```
 
 **Protip:** You'll probably want some recursion.
 
 ```javascript
 /**
-* Implement a similar function to betterRandomPassword except use remoteValidate to validate the password.
-* @param len number
-* @param done function
+* Searches files and returns if filename is contained within the list of lists.
+* @param files array
+* @param filename string
 */
-function remoteValidatedPassword(len, done){
+function searchForFile(files, filename){
     
 }
 ```
